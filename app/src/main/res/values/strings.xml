@@ -3,6 +3,9 @@
     <string name="firstMenuOption">1. Grant Permission</string>
     <string name="secondMenuOption">2. Search BT List</string>
     <string name="thirdMenuOption">3. Connect to EV3</string>
+    <string name="fourthMenuOption">4. Move Motor</string>
+    <string name="fifthMenuOption">5. Play Tone</string>
+    <string name="sixthMenuOption">6. Disconnect From EV3</string>
     <string name="COSC426Greeting">Hello Android 426!</string>
     <string name="FABToast">FAB Pressed</string>
 </resources>

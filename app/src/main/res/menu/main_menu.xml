@@ -9,4 +9,13 @@
     <item
         android:id="@+id/thirdMenuOption"
         android:title="@string/thirdMenuOption" />
+    <item
+        android:id="@+id/fourthMenuOption"
+        android:title="@string/fourthMenuOption" />
+    <item
+        android:id="@+id/fifthMenuOption"
+        android:title="@string/fifthMenuOption" />
+    <item
+        android:id="@+id/sixthMenuOption"
+        android:title="@string/sixthMenuOption" />
 </menu>
