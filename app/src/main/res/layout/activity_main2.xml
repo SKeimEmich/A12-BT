@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#D6D6D6"
+    tools:context=".MainActivity2">
+
+    <LinearLayout
+        android:id="@+id/upLinearLayout"
+        android:layout_width="360dp"
+        android:layout_height="94dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="3dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/otherButtonsLayout"
+        app:layout_constraintTop_toBottomOf="@+id/nxtConnectionText"
+        tools:layout_editor_absoluteX="25dp">
+
+        <ImageButton
+            android:id="@+id/driveUp"
+            android:layout_width="96dp"
+            android:layout_height="98dp"
+            android:elevation="5"
+            android:scaleType="centerInside"
+            app:srcCompat="@drawable/arrow_up" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/otherButtonsLayout"
+        android:layout_width="366dp"
+        android:layout_height="98dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        tools:layout_editor_absoluteX="23dp"
+        tools:layout_editor_absoluteY="184dp">
+
+        <ImageButton
+            android:id="@+id/driveRight"
+            android:layout_width="127dp"
+            android:layout_height="99dp"
+            android:elevation="5"
+            android:scaleType="centerInside"
+            app:srcCompat="@drawable/arrow_right2" />
+
+        <ImageButton
+            android:id="@+id/driveDown"
+            android:layout_width="93dp"
+            android:layout_height="100dp"
+            android:elevation="5"
+            android:scaleType="centerInside"
+            app:srcCompat="@drawable/arrow_down" />
+
+        <ImageButton
+            android:id="@+id/driveLeft"
+            android:layout_width="127dp"
+            android:layout_height="99dp"
+            android:elevation="5"
+            android:scaleType="centerInside"
+            app:srcCompat="@drawable/arrow_left" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="385dp"
+        android:layout_height="118dp"
+        android:layout_marginBottom="64dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/secondSeekLayout"
+        tools:layout_editor_absoluteX="10dp">
+
+        <ImageButton
+            android:id="@+id/otherDriveDown"
+            android:layout_width="128dp"
+            android:layout_height="112dp"
+            android:elevation="5"
+            app:srcCompat="@drawable/arrow_down" />
+
+        <ImageButton
+            android:id="@+id/otherDriveUp"
+            android:layout_width="128dp"
+            android:layout_height="112dp"
+            android:elevation="5"
+            android:scaleType="centerInside"
+            app:srcCompat="@drawable/arrow_up" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/secondSeekLayout"
+        android:layout_width="398dp"
+        android:layout_height="58dp"
+        android:orientation="horizontal"
+        tools:layout_editor_absoluteX="2dp"
+        tools:layout_editor_absoluteY="602dp">
+
+        <TextView
+            android:id="@+id/secondSeekBarText"
+            android:layout_width="69dp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="Power 0:"
+            android:textSize="16sp" />
+
+        <SeekBar
+            android:id="@+id/secondSeekBar"
+            android:layout_width="327dp"
+            android:layout_height="match_parent"
+            android:max="100" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/firstSeekLayout"
+        android:layout_width="407dp"
+        android:layout_height="54dp"
+        android:layout_marginTop="32dp"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@+id/otherButtonsLayout"
+        tools:layout_editor_absoluteX="2dp">
+
+        <TextView
+            android:id="@+id/firstSeekBarText"
+            android:layout_width="73dp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="Power 0:"
+            android:textSize="16sp" />
+
+        <SeekBar
+            android:id="@+id/firstSeekBar"
+            android:layout_width="309dp"
+            android:layout_height="match_parent"
+            android:max="100" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/nxtConnectionText"
+        android:layout_width="237dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="32dp"
+        android:gravity="center"
+        android:text="NXT Device is not connected!"
+        android:textColor="#FF9800"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</android.support.constraint.ConstraintLayout>
