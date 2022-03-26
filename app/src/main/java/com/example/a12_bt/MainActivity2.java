@@ -25,17 +25,56 @@ public class MainActivity2 extends AppCompatActivity implements SeekBar.OnSeekBa
 
         // Drive Buttons
         ImageButton driveUp = findViewById(R.id.driveUp);
-        driveUp.setOnClickListener(this);
+        driveUp.setOnTouchListener(new RepeatListener(400, 100, new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //set the direction as forward
+                MainActivity.direction = 1;
+                //call the move method
+                MainActivity.moveForward();
+            }
+        }));
+
         ImageButton driveDown = findViewById(R.id.driveDown);
-        driveDown.setOnClickListener(this);
+        driveDown.setOnTouchListener(new RepeatListener(400, 100, new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                MainActivity.direction = -1;
+                MainActivity.moveForward();
+            }
+        }));
         ImageButton driveRight = findViewById(R.id.driveRight);
-        driveUp.setOnClickListener(this);
+        driveRight.setOnTouchListener(new RepeatListener(400, 100, new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                MainActivity.direction = 1;
+                MainActivity.turnRight();
+            }
+        }));
         ImageButton driveLeft = findViewById(R.id.driveLeft);
-        driveUp.setOnClickListener(this);
+        driveLeft.setOnTouchListener(new RepeatListener(400, 100, new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                MainActivity.direction = 1;
+                MainActivity.turnLeft();
+            }
+        }));
         ImageButton otherDriveDown = findViewById(R.id.otherDriveDown);
-        driveUp.setOnClickListener(this);
+        otherDriveDown.setOnTouchListener(new RepeatListener(400, 100, new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                MainActivity.direction = -1;
+                MainActivity.moveForward();
+            }
+        }));
         ImageButton otherDriveUp = findViewById(R.id.otherDriveUp);
-        driveUp.setOnClickListener(this);
+        otherDriveUp.setOnTouchListener(new RepeatListener(400, 100, new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                MainActivity.direction = 1;
+                MainActivity.moveForward();
+            }
+        }));
 
     }
 
