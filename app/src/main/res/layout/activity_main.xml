@@ -10,43 +10,47 @@
         android:id="@+id/vv_tvOut1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
+        android:text="COSC 426"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias=".5"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias=".25" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/configBTButton"
         android:layout_width="140dp"
         android:layout_height="55dp"
-        android:text="Button"
+        android:text="Configure Bluetooth"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/vv_tvOut1" />
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/floatingActionButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/fab_margin"
-        android:layout_marginBottom="@dimen/fab_margin"
-        android:clickable="true"
+    <Button
+        android:id="@+id/robotControlButton"
+        android:layout_width="140dp"
+        android:layout_height="55dp"
+        android:text="Control Robot"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@android:drawable/ic_dialog_email"
-        tools:ignore="SpeakableTextPresentCheck" />
+        app:layout_constraintHorizontal_bias=".5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/vv_tvOut1"
+        app:layout_constraintVertical_bias=".7" />
 
     <TextView
         android:id="@+id/vv_tvOut2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
-        app:layout_constraintBottom_toTopOf="@+id/button"
+        android:text="Robot Controller"
+        android:textSize="28sp"
+        app:layout_constraintBottom_toTopOf="@+id/configBTButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias=".5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/vv_tvOut1" />
+        app:layout_constraintTop_toBottomOf="@+id/vv_tvOut1"
+        app:layout_constraintVertical_bias=".1" />
 
 </android.support.constraint.ConstraintLayout>
