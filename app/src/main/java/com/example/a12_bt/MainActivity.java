@@ -47,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
     static int direction = 1;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -94,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
 //                cpf_connectToEV3(cv_btDevice);
                 return true;
             case id.fourthMenuOption:
-                moveForward();
+                //moveForward();
                 return true;
             case id.fifthMenuOption:
                 cpf_EV3PlayTone();
@@ -108,131 +109,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    //set the motor direction forward/backward
-    private static void setDirection() {
-        try {
-            byte[] buffer = new byte[11];       // 0x12 command length
 
-            buffer[0] = (byte) (11-2);
-            buffer[1] = 0;
-            buffer[2] = 34;
-            buffer[3] = 12;
-            buffer[4] = (byte) 0x80;
-            buffer[5] = 0;
-            buffer[6] = 0;
-            buffer[7] = (byte) 0xA7;
-            buffer[8] = 0;
-            buffer[9] = 0x06;
-            buffer[10] = (byte) direction;
-
-            cv_os.write(buffer);
-            cv_os.flush();
-        }
-        catch (Exception e) {
-            //binding.vvTvOut1.setText("Error in Back(" + e.getMessage() + ")");
-        }
-    }
-
-    //move both wheels
-    static void moveForward() {
-        setDirection();
-        try {
-            byte[] buffer = new byte[20];       // 0x12 command length
-            buffer[0] = (byte) (20-2);
-            buffer[1] = 0;
-            buffer[2] = 34;
-            buffer[3] = 12;
-            buffer[4] = (byte) 0x80;
-            buffer[5] = 0;
-            buffer[6] = 0;
-            buffer[7] = (byte) 0xae;
-            buffer[8] = 0;
-            buffer[9] = (byte) 0x06;
-            buffer[10] = (byte) 0x81;
-            buffer[11] = (byte) speed;
-            buffer[12] = 0;
-            buffer[13] = (byte) 0x82;
-            buffer[14] = (byte) 0xB4;
-            buffer[15] = (byte) 0x00;
-            buffer[16] = (byte) 0x82;
-            buffer[17] = (byte) 0xB4;
-            buffer[18] = (byte) 0x00;
-
-            cv_os.write(buffer);
-            cv_os.flush();
-        }
-        catch (Exception e) {
-            //binding.vvTvOut1.setText("Error in MoveForward(" + e.getMessage() + ")");
-        }
-    }
-
-
-    //move the right wheel only
-    static void turnLeft() {
-        setDirection();
-        try {
-            byte[] buffer = new byte[20];       // 0x12 command length
-
-            buffer[0] = (byte) (20-2);
-            buffer[1] = 0;
-            buffer[2] = 34;
-            buffer[3] = 12;
-            buffer[4] = (byte) 0x80;
-            buffer[5] = 0;
-            buffer[6] = 0;
-            buffer[7] = (byte) 0xae;
-            buffer[8] = 0;
-            buffer[9] = (byte) 0x02;
-            buffer[10] = (byte) 0x81;
-            buffer[11] = (byte) speed;
-            buffer[12] = 0;
-            buffer[13] = (byte) 0x82;
-            buffer[14] = (byte) 0x5A;
-            buffer[15] = (byte) 0x00;
-            buffer[16] = (byte) 0x82;
-            buffer[17] = (byte) 0x5A;
-            buffer[18] = (byte) 0x00;
-
-            cv_os.write(buffer);
-            cv_os.flush();
-        }
-        catch (Exception e) {
-            //binding.vvTvOut1.setText("Error in TurnLeft(" + e.getMessage() + ")");
-        }
-    }
-
-    //move the left wheel only
-    static void turnRight() {
-        setDirection();
-        try {
-            byte[] buffer = new byte[20];       // 0x12 command length
-            buffer[0] = (byte) (20-2);
-            buffer[1] = 0;
-            buffer[2] = 34;
-            buffer[3] = 12;
-            buffer[4] = (byte) 0x80;
-            buffer[5] = 0;
-            buffer[6] = 0;
-            buffer[7] = (byte) 0xae;
-            buffer[8] = 0;
-            buffer[9] = 0x04;
-            buffer[10] = (byte) 0x81;
-            buffer[11] = (byte) speed;
-            buffer[12] = 0;
-            buffer[13] = (byte) 0x82;
-            buffer[14] = (byte) 0x5A;
-            buffer[15] = (byte) 0x00;
-            buffer[16] = (byte) 0x82;
-            buffer[17] = (byte) 0x5A;
-            buffer[18] = (byte) 0x00;
-
-            cv_os.write(buffer);
-            cv_os.flush();
-        }
-        catch (Exception e) {
-            //binding.vvTvOut1.setText("Error in TurnRight(" + e.getMessage() + ")");
-        }
-    }
 
 
     //play tone on EV3
