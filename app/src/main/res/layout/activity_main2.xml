@@ -78,12 +78,15 @@
 
     <LinearLayout
         android:id="@+id/firstSeekLayout"
-        android:layout_width="388dp"
+        android:layout_width="0dp"
         android:layout_height="48dp"
+        android:layout_marginStart="7dp"
         android:layout_marginTop="36dp"
+        android:layout_marginEnd="7dp"
         android:orientation="horizontal"
-        app:layout_constraintTop_toBottomOf="@+id/otherButtonsLayout"
-        tools:layout_editor_absoluteX="16dp">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/otherButtonsLayout">
 
         <TextView
             android:id="@+id/firstSeekBarText"
@@ -102,13 +105,16 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/linearLayout3"
         android:layout_width="409dp"
-        android:layout_height="100dp"
-        android:layout_marginBottom="204dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="427dp"
+        android:layout_marginBottom="143dp"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/colorSensorBtn"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <Button
             android:id="@+id/key1"
@@ -123,8 +129,8 @@
             android:id="@+id/key2"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_weight="1"
             android:layout_marginBottom="20dp"
+            android:layout_weight="1"
             android:background="#000000" />
 
         <Button
@@ -139,8 +145,8 @@
             android:id="@+id/key4"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_weight="1"
             android:layout_marginBottom="20dp"
+            android:layout_weight="1"
             android:background="#FF000000" />
 
         <Button
@@ -163,8 +169,8 @@
             android:id="@+id/key7"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_weight="1"
             android:layout_marginBottom="20dp"
+            android:layout_weight="1"
             android:background="#FF000000" />
 
         <Button
@@ -179,8 +185,8 @@
             android:id="@+id/key9"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_weight="1"
             android:layout_marginBottom="20dp"
+            android:layout_weight="1"
             android:background="#FF000000" />
 
         <Button
@@ -191,5 +197,17 @@
             android:background="#FFFFFF"
             android:shadowColor="#978F8F" />
     </LinearLayout>
+
+    <Button
+        android:id="@+id/colorSensorBtn"
+        android:layout_width="115dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="13dp"
+        android:layout_marginBottom="17dp"
+        android:background="#4EC153"
+        android:text="Read Color"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout3" />
 
 </android.support.constraint.ConstraintLayout>

@@ -5,6 +5,7 @@ import android.annotation.SuppressLint;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
+import android.content.Context;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.media.Image;
@@ -667,6 +668,34 @@ public class BluetoothConfigActivity extends AppCompatActivity {
         }
         catch (Exception e) {
             //binding.vvTvOut1.setText("Error in PlayTone(" + e.getMessage() + ")");
+        }
+    }
+    public static void readColorSensor(Context ctx){
+        try{
+//            0D00xxxx000400991D000200000160
+            byte[] buffer = new byte[15];
+            buffer[0] = (byte) (15-2);
+            buffer[1] = 0;
+            buffer[2] = 34;
+            buffer[3] = 12;
+            buffer[4] = 0;
+            buffer[5] = 4;
+            buffer[6] = 0;
+            buffer[7] = (byte) 0x99;
+            buffer[8] = (byte) 0x1D;
+            buffer[9] = 0;
+            buffer[10] = (byte) 0x02;
+            buffer[11] = 0;
+            buffer[12] = 0;
+            buffer[13] = (byte) 0x01;
+            buffer[14] = (byte) 0x60;
+            cv_os.write(buffer);
+            cv_os.flush();
+
+            int response = cv_is.read();
+            Toast.makeText(ctx, "Color Sensor Value is " + response, Toast.LENGTH_LONG).show();
+        }catch(Exception e){
+            Toast.makeText(ctx, "Read Color Sensor Function is broken!!", Toast.LENGTH_LONG).show();
         }
     }
 }

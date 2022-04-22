@@ -159,6 +159,13 @@ public class MainActivity2 extends AppCompatActivity implements SeekBar.OnSeekBa
 //                BluetoothConfigActivity.moveForward();
 //            }
 //        }));
+        Button colorSensor = findViewById(R.id.colorSensorBtn);
+        colorSensor.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                BluetoothConfigActivity.readColorSensor(MainActivity2.this);
+            }
+        });
 
     }
 
