@@ -13,7 +13,7 @@
         android:layout_height="35dp"
         android:layout_marginTop="28dp"
         android:gravity="center"
-        android:text="NXT Device is not connected!"
+        android:text="Status"
         android:textColor="#FF9800"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -102,56 +102,94 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/linearLayout"
-        android:layout_width="385dp"
-        android:layout_height="118dp"
-        android:layout_marginTop="44dp"
-        android:gravity="center"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/firstSeekLayout">
-
-        <ImageButton
-            android:id="@+id/otherDriveDown"
-            android:layout_width="128dp"
-            android:layout_height="112dp"
-            android:elevation="5dp"
-            app:srcCompat="@drawable/arrow_down" />
-
-        <ImageButton
-            android:id="@+id/otherDriveUp"
-            android:layout_width="128dp"
-            android:layout_height="112dp"
-            android:elevation="5dp"
-            android:scaleType="centerInside"
-            app:srcCompat="@drawable/arrow_up" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/secondSeekLayout"
-        android:layout_width="388dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="52dp"
+        android:layout_width="409dp"
+        android:layout_height="100dp"
+        android:layout_marginBottom="204dp"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-        app:layout_constraintVertical_bias="0.013"
-        tools:layout_editor_absoluteX="16dp">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
 
-        <TextView
-            android:id="@+id/secondSeekBarText"
-            android:layout_width="73dp"
+        <Button
+            android:id="@+id/key1"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:gravity="center"
-            android:text="Power 0:"
-            android:textSize="16sp" />
+            android:layout_weight="1"
+            android:background="#FFFFFF"
+            android:shadowColor="#978F8F"
+            tools:ignore="TouchTargetSizeCheck" />
 
-        <SeekBar
-            android:id="@+id/secondSeekBar"
-            android:layout_width="295dp"
+        <Button
+            android:id="@+id/key2"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:max="100" />
+            android:layout_weight="1"
+            android:layout_marginBottom="20dp"
+            android:background="#000000" />
+
+        <Button
+            android:id="@+id/key3"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="#FFFFFF"
+            android:shadowColor="#978F8F" />
+
+        <Button
+            android:id="@+id/key4"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_marginBottom="20dp"
+            android:background="#FF000000" />
+
+        <Button
+            android:id="@+id/key5"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="#FFFFFF"
+            android:shadowColor="#978F8F" />
+
+        <Button
+            android:id="@+id/key6"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="#FFFFFF"
+            android:shadowColor="#978F8F" />
+
+        <Button
+            android:id="@+id/key7"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_marginBottom="20dp"
+            android:background="#FF000000" />
+
+        <Button
+            android:id="@+id/key8"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="#FFFFFF"
+            android:shadowColor="#978F8F" />
+
+        <Button
+            android:id="@+id/key9"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_marginBottom="20dp"
+            android:background="#FF000000" />
+
+        <Button
+            android:id="@+id/key10"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="#FFFFFF"
+            android:shadowColor="#978F8F" />
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>

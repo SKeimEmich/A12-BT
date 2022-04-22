@@ -1,9 +1,11 @@
 package com.example.a12_bt;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -20,9 +22,9 @@ public class MainActivity2 extends AppCompatActivity implements SeekBar.OnSeekBa
 
         // Seekbars
         SeekBar firstSeek = findViewById(R.id.firstSeekBar);
-        SeekBar secondSeek = findViewById(R.id.secondSeekBar);
+        //SeekBar secondSeek = findViewById(R.id.secondSeekBar);
         firstSeek.setOnSeekBarChangeListener(this);
-        secondSeek.setOnSeekBarChangeListener(this);
+        //secondSeek.setOnSeekBarChangeListener(this);
 
         //set bluetooth connection status
         TextView connectionStatus = (TextView) findViewById(R.id.nxtConnectionText);
@@ -71,22 +73,92 @@ public class MainActivity2 extends AppCompatActivity implements SeekBar.OnSeekBa
                 BluetoothConfigActivity.turnLeft();
             }
         }));
-        ImageButton otherDriveDown = findViewById(R.id.otherDriveDown);
-        otherDriveDown.setOnTouchListener(new RepeatListener(400, 100, new View.OnClickListener() {
+        Button key1 = findViewById(R.id.key1);
+        Button key2 = findViewById(R.id.key2);
+        Button key3 = findViewById(R.id.key3);
+        Button key4 = findViewById(R.id.key4);
+        Button key5 = findViewById(R.id.key5);
+        Button key6 = findViewById(R.id.key6);
+        Button key7 = findViewById(R.id.key7);
+        Button key8 = findViewById(R.id.key8);
+        Button key9 = findViewById(R.id.key9);
+        Button key10 = findViewById(R.id.key10);
+        key1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                BluetoothConfigActivity.direction = -1;
-                BluetoothConfigActivity.moveForward();
+                BluetoothConfigActivity.playTone1();
             }
-        }));
-        ImageButton otherDriveUp = findViewById(R.id.otherDriveUp);
-        otherDriveUp.setOnTouchListener(new RepeatListener(400, 100, new View.OnClickListener() {
+        });
+        key2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                BluetoothConfigActivity.direction = 1;
-                BluetoothConfigActivity.moveForward();
+                BluetoothConfigActivity.playTone2();
             }
-        }));
+        });
+        key3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                BluetoothConfigActivity.playTone3();
+            }
+        });
+        key4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                BluetoothConfigActivity.playTone4();
+            }
+        });
+        key5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                BluetoothConfigActivity.playTone5();
+            }
+        });
+        key6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                BluetoothConfigActivity.playTone6();
+            }
+        });
+        key7.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                BluetoothConfigActivity.playTone7();
+            }
+        });
+        key8.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                BluetoothConfigActivity.playTone8();
+            }
+        });
+        key9.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                BluetoothConfigActivity.playTone9();
+            }
+        });
+        key10.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                BluetoothConfigActivity.playTone10();
+            }
+        });
+//        ImageButton otherDriveDown = findViewById(R.id.otherDriveDown);
+//        otherDriveDown.setOnTouchListener(new RepeatListener(400, 100, new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                BluetoothConfigActivity.direction = -1;
+//                BluetoothConfigActivity.moveForward();
+//            }
+//        }));
+//        ImageButton otherDriveUp = findViewById(R.id.otherDriveUp);
+//        otherDriveUp.setOnTouchListener(new RepeatListener(400, 100, new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                BluetoothConfigActivity.direction = 1;
+//                BluetoothConfigActivity.moveForward();
+//            }
+//        }));
 
     }
 
@@ -101,12 +173,12 @@ public class MainActivity2 extends AppCompatActivity implements SeekBar.OnSeekBa
             text.setText("Power " + progress + ":");
             BluetoothConfigActivity.speed = progress;
         }
-        else{
-            secondSeekBarProgress = progress;
-            TextView text = findViewById(R.id.secondSeekBarText);
-            text.setText("Power " + progress + ":");
-            BluetoothConfigActivity.speed = progress;
-        }
+//        else{
+//            secondSeekBarProgress = progress;
+//            TextView text = findViewById(R.id.secondSeekBarText);
+//            text.setText("Power " + progress + ":");
+//            BluetoothConfigActivity.speed = progress;
+//        }
 
     }
 
@@ -132,10 +204,10 @@ public class MainActivity2 extends AppCompatActivity implements SeekBar.OnSeekBa
                 break;
             case R.id.driveDown:
                 break;
-            case R.id.otherDriveDown:
-                break;
-            case R.id.otherDriveUp:
-                break;
+//            case R.id.otherDriveDown:
+//                break;
+//            case R.id.otherDriveUp:
+//                break;
         }
     }
 }

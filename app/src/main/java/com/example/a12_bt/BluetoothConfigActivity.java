@@ -8,10 +8,14 @@ import android.bluetooth.BluetoothSocket;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.media.Image;
+import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -41,6 +45,10 @@ public class BluetoothConfigActivity extends AppCompatActivity {
     static int speed = 0;
     //initialize direction as forward (1)
     static int direction = 1;
+    static int tone1;
+    static int tone2;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +58,12 @@ public class BluetoothConfigActivity extends AppCompatActivity {
         setContentView(view);
 
 
+
+        // calling the action bar
+        ActionBar actionBar = getSupportActionBar();
+
+        // showing the back button in action bar
+        //actionBar.setDisplayHomeAsUpEnabled(true);
 
         // Need grant permission once per install
         cpf_checkBTPermissions();
@@ -78,6 +92,17 @@ public class BluetoothConfigActivity extends AppCompatActivity {
             }
         });
     }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                this.finish();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
     private void cpf_checkBTPermissions() {
         if (ContextCompat.checkSelfPermission(BluetoothConfigActivity.this,
                 Manifest.permission.BLUETOOTH_SCAN) == PackageManager.PERMISSION_GRANTED) {
@@ -251,10 +276,35 @@ public class BluetoothConfigActivity extends AppCompatActivity {
         }
     }
 
+    //convert integer to hex value & set tone
+    static void setTone(int num){
+        String byte1 = "d", byte2 = "d";
+        String hex = Integer.toHexString(num);
+        if (hex.length() == 3){
+            byte1 = hex.substring(0,1);
+            byte1 = "0x0"+byte1;
+            byte2 = hex.substring(1);
+            byte2 = "0x"+byte2;
+            tone1 = Integer.valueOf(byte1,16);
+            tone2 = Integer.valueOf(byte2,16);
+        }
+        else if(hex.length()==2){
+            byte2 = "0x"+hex;
+            byte1 = "0x00";
+            tone1 = Integer.valueOf(byte1,16);
+            tone2 = Integer.valueOf(byte2,16);
+        }
+        Log.d("tones1",byte1);
+        Log.d("tones2",byte2);
+
+
+    }
+
 
     //move the right wheel only
     static void turnLeft() {
         setDirection();
+        playTone10();
         try {
             byte[] buffer = new byte[20];       // 0x12 command length
 
@@ -289,6 +339,7 @@ public class BluetoothConfigActivity extends AppCompatActivity {
     //move the left wheel only
     static void turnRight() {
         setDirection();
+        playTone1();
         try {
             byte[] buffer = new byte[20];       // 0x12 command length
             buffer[0] = (byte) (20-2);
@@ -316,6 +367,306 @@ public class BluetoothConfigActivity extends AppCompatActivity {
         }
         catch (Exception e) {
             //binding.vvTvOut1.setText("Error in TurnRight(" + e.getMessage() + ")");
+        }
+    }
+    //play tone on EV3
+    public static void playTone1(){
+        try {
+            byte[] buffer = new byte[17];       // 0x12  command length
+            buffer[0] = (byte) (17-2);
+            buffer[1] = 0;
+            buffer[2] = 34;
+            buffer[3] = 12;
+            buffer[4] = (byte) 0x80;
+            buffer[5] = 0;
+            buffer[6] = 0;
+            buffer[7] = (byte) 0x94;
+            buffer[8] = (byte) 0x01;
+            buffer[9] = (byte) 0x81;
+            buffer[10] = (byte) 0x02;
+            buffer[11] = (byte) 0x82;
+            //set tone from input selection
+            buffer[12] = (byte) 0xc8;
+            buffer[13] = (byte) 0x00;
+            buffer[14] = (byte) 0x82;
+            //set duration to 400ms
+            buffer[15] = (byte) 0x90;
+            buffer[16] = 1;
+            cv_os.write(buffer);
+            cv_os.flush();
+        }
+        catch (Exception e) {
+            //binding.vvTvOut1.setText("Error in PlayTone(" + e.getMessage() + ")");
+        }
+    }
+    //play tone on EV3
+    public static void playTone2(){
+        try {
+            byte[] buffer = new byte[17];       // 0x12  command length
+            buffer[0] = (byte) (17-2);
+            buffer[1] = 0;
+            buffer[2] = 34;
+            buffer[3] = 12;
+            buffer[4] = (byte) 0x80;
+            buffer[5] = 0;
+            buffer[6] = 0;
+            buffer[7] = (byte) 0x94;
+            buffer[8] = (byte) 0x01;
+            buffer[9] = (byte) 0x81;
+            buffer[10] = (byte) 0x02;
+            buffer[11] = (byte) 0x82;
+            //set tone from input selection
+            buffer[12] = (byte) 0x2c;
+            buffer[13] = (byte) 0x01;
+            buffer[14] = (byte) 0x82;
+            //set duration to 400ms
+            buffer[15] = (byte) 0x90;
+            buffer[16] = 1;
+            cv_os.write(buffer);
+            cv_os.flush();
+        }
+        catch (Exception e) {
+            //binding.vvTvOut1.setText("Error in PlayTone(" + e.getMessage() + ")");
+        }
+    }
+    //play tone on EV3
+    public static void playTone3(){
+        try {
+            byte[] buffer = new byte[17];       // 0x12  command length
+            buffer[0] = (byte) (17-2);
+            buffer[1] = 0;
+            buffer[2] = 34;
+            buffer[3] = 12;
+            buffer[4] = (byte) 0x80;
+            buffer[5] = 0;
+            buffer[6] = 0;
+            buffer[7] = (byte) 0x94;
+            buffer[8] = (byte) 0x01;
+            buffer[9] = (byte) 0x81;
+            buffer[10] = (byte) 0x02;
+            buffer[11] = (byte) 0x82;
+            //set tone from input selection
+            buffer[12] = (byte) 0x90;
+            buffer[13] = (byte) 0x01;
+            buffer[14] = (byte) 0x82;
+            //set duration to 400ms
+            buffer[15] = (byte) 0x90;
+            buffer[16] = 1;
+            cv_os.write(buffer);
+            cv_os.flush();
+        }
+        catch (Exception e) {
+            //binding.vvTvOut1.setText("Error in PlayTone(" + e.getMessage() + ")");
+        }
+    }
+    //play tone on EV3
+    public static void playTone4(){
+        try {
+            byte[] buffer = new byte[17];       // 0x12  command length
+            buffer[0] = (byte) (17-2);
+            buffer[1] = 0;
+            buffer[2] = 34;
+            buffer[3] = 12;
+            buffer[4] = (byte) 0x80;
+            buffer[5] = 0;
+            buffer[6] = 0;
+            buffer[7] = (byte) 0x94;
+            buffer[8] = (byte) 0x01;
+            buffer[9] = (byte) 0x81;
+            buffer[10] = (byte) 0x02;
+            buffer[11] = (byte) 0x82;
+            //set tone from input selection
+            buffer[12] = (byte) 0xf4;
+            buffer[13] = (byte) 0x01;
+            buffer[14] = (byte) 0x82;
+            //set duration to 400ms
+            buffer[15] = (byte) 0x90;
+            buffer[16] = 1;
+            cv_os.write(buffer);
+            cv_os.flush();
+        }
+        catch (Exception e) {
+            //binding.vvTvOut1.setText("Error in PlayTone(" + e.getMessage() + ")");
+        }
+    }
+    //play tone on EV3
+    public static void playTone5(){
+        try {
+            byte[] buffer = new byte[17];       // 0x12  command length
+            buffer[0] = (byte) (17-2);
+            buffer[1] = 0;
+            buffer[2] = 34;
+            buffer[3] = 12;
+            buffer[4] = (byte) 0x80;
+            buffer[5] = 0;
+            buffer[6] = 0;
+            buffer[7] = (byte) 0x94;
+            buffer[8] = (byte) 0x01;
+            buffer[9] = (byte) 0x81;
+            buffer[10] = (byte) 0x02;
+            buffer[11] = (byte) 0x82;
+            //set tone from input selection
+            buffer[12] = (byte) 0x58;
+            buffer[13] = (byte) 0x02;
+            buffer[14] = (byte) 0x82;
+            //set duration to 400ms
+            buffer[15] = (byte) 0x90;
+            buffer[16] = 1;
+            cv_os.write(buffer);
+            cv_os.flush();
+        }
+        catch (Exception e) {
+            //binding.vvTvOut1.setText("Error in PlayTone(" + e.getMessage() + ")");
+        }
+    }
+    //play tone on EV3
+    public static void playTone6(){
+        try {
+            byte[] buffer = new byte[17];       // 0x12  command length
+            buffer[0] = (byte) (17-2);
+            buffer[1] = 0;
+            buffer[2] = 34;
+            buffer[3] = 12;
+            buffer[4] = (byte) 0x80;
+            buffer[5] = 0;
+            buffer[6] = 0;
+            buffer[7] = (byte) 0x94;
+            buffer[8] = (byte) 0x01;
+            buffer[9] = (byte) 0x81;
+            buffer[10] = (byte) 0x02;
+            buffer[11] = (byte) 0x82;
+            //set tone from input selection
+            buffer[12] = (byte) 0xbc;
+            buffer[13] = (byte) 0x02;
+            buffer[14] = (byte) 0x82;
+            //set duration to 400ms
+            buffer[15] = (byte) 0x90;
+            buffer[16] = 1;
+            cv_os.write(buffer);
+            cv_os.flush();
+        }
+        catch (Exception e) {
+            //binding.vvTvOut1.setText("Error in PlayTone(" + e.getMessage() + ")");
+        }
+    }
+    //play tone on EV3
+    public static void playTone7(){
+        try {
+            byte[] buffer = new byte[17];       // 0x12  command length
+            buffer[0] = (byte) (17-2);
+            buffer[1] = 0;
+            buffer[2] = 34;
+            buffer[3] = 12;
+            buffer[4] = (byte) 0x80;
+            buffer[5] = 0;
+            buffer[6] = 0;
+            buffer[7] = (byte) 0x94;
+            buffer[8] = (byte) 0x01;
+            buffer[9] = (byte) 0x81;
+            buffer[10] = (byte) 0x02;
+            buffer[11] = (byte) 0x82;
+            //set tone from input selection
+            buffer[12] = (byte) 0x20;
+            buffer[13] = (byte) 0x03;
+            buffer[14] = (byte) 0x82;
+            //set duration to 400ms
+            buffer[15] = (byte) 0x90;
+            buffer[16] = 1;
+            cv_os.write(buffer);
+            cv_os.flush();
+        }
+        catch (Exception e) {
+            //binding.vvTvOut1.setText("Error in PlayTone(" + e.getMessage() + ")");
+        }
+    }
+    //play tone on EV3
+    public static void playTone8(){
+        try {
+            byte[] buffer = new byte[17];       // 0x12  command length
+            buffer[0] = (byte) (17-2);
+            buffer[1] = 0;
+            buffer[2] = 34;
+            buffer[3] = 12;
+            buffer[4] = (byte) 0x80;
+            buffer[5] = 0;
+            buffer[6] = 0;
+            buffer[7] = (byte) 0x94;
+            buffer[8] = (byte) 0x01;
+            buffer[9] = (byte) 0x81;
+            buffer[10] = (byte) 0x02;
+            buffer[11] = (byte) 0x82;
+            //set tone from input selection
+            buffer[12] = (byte) 0x84;
+            buffer[13] = (byte) 0x03;
+            buffer[14] = (byte) 0x82;
+            //set duration to 400ms
+            buffer[15] = (byte) 0x90;
+            buffer[16] = 1;
+            cv_os.write(buffer);
+            cv_os.flush();
+        }
+        catch (Exception e) {
+            //binding.vvTvOut1.setText("Error in PlayTone(" + e.getMessage() + ")");
+        }
+    }
+    //play tone on EV3
+    public static void playTone9(){
+        try {
+            byte[] buffer = new byte[17];       // 0x12  command length
+            buffer[0] = (byte) (17-2);
+            buffer[1] = 0;
+            buffer[2] = 34;
+            buffer[3] = 12;
+            buffer[4] = (byte) 0x80;
+            buffer[5] = 0;
+            buffer[6] = 0;
+            buffer[7] = (byte) 0x94;
+            buffer[8] = (byte) 0x01;
+            buffer[9] = (byte) 0x81;
+            buffer[10] = (byte) 0x02;
+            buffer[11] = (byte) 0x82;
+            //set tone from input selection
+            buffer[12] = (byte) 0xe8;
+            buffer[13] = (byte) 0x03;
+            buffer[14] = (byte) 0x82;
+            //set duration to 400ms
+            buffer[15] = (byte) 0x90;
+            buffer[16] = 1;
+            cv_os.write(buffer);
+            cv_os.flush();
+        }
+        catch (Exception e) {
+            //binding.vvTvOut1.setText("Error in PlayTone(" + e.getMessage() + ")");
+        }
+    }
+    //play tone on EV3
+    public static void playTone10(){
+        try {
+            byte[] buffer = new byte[17];       // 0x12  command length
+            buffer[0] = (byte) (17-2);
+            buffer[1] = 0;
+            buffer[2] = 34;
+            buffer[3] = 12;
+            buffer[4] = (byte) 0x80;
+            buffer[5] = 0;
+            buffer[6] = 0;
+            buffer[7] = (byte) 0x94;
+            buffer[8] = (byte) 0x01;
+            buffer[9] = (byte) 0x81;
+            buffer[10] = (byte) 0x02;
+            buffer[11] = (byte) 0x82;
+            //set tone from input selection
+            buffer[12] = (byte) 0x4c;
+            buffer[13] = (byte) 0x04;
+            buffer[14] = (byte) 0x82;
+            //set duration to 400ms
+            buffer[15] = (byte) 0x90;
+            buffer[16] = 1;
+            cv_os.write(buffer);
+            cv_os.flush();
+        }
+        catch (Exception e) {
+            //binding.vvTvOut1.setText("Error in PlayTone(" + e.getMessage() + ")");
         }
     }
 }
