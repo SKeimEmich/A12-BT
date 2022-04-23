@@ -1,5 +1,8 @@
 package com.example.a12_bt;
 
+import android.bluetooth.BluetoothAdapter;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
@@ -9,6 +12,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity2 extends AppCompatActivity implements SeekBar.OnSeekBarChangeListener, View.OnClickListener{
     // To store the speed
@@ -167,6 +171,26 @@ public class MainActivity2 extends AppCompatActivity implements SeekBar.OnSeekBa
             }
         });
 
+        BroadcastReceiver mBroadcastReceiver1 = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                final String action = intent.getAction();
+                if (action.equals(BluetoothAdapter.ACTION_STATE_CHANGED)) {
+                    final int state = intent.getIntExtra(BluetoothAdapter.EXTRA_STATE, BluetoothAdapter.ERROR);
+                    if (state == BluetoothAdapter.STATE_DISCONNECTED) {
+                        BluetoothConfigActivity.connectionStatus = false;
+                        // toast message
+                        Toast.makeText(context, "Robot disconnected. Check battery.", Toast.LENGTH_LONG).show();
+
+                        // navigate to mainscreen
+                        Intent lv_it = new Intent(MainActivity2.this, MainActivity.class);
+                        startActivity(lv_it);
+
+                    }
+
+                }
+            }
+        };
     }
 
     @Override

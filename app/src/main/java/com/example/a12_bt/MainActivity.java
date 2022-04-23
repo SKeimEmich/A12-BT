@@ -55,7 +55,8 @@ public class MainActivity extends AppCompatActivity {
         View view = binding.getRoot();
         setContentView(view);
 
-
+        // Button to display robot controls is not enabled if the robot is not connected
+        binding.robotControlButton.setEnabled(BluetoothConfigActivity.connectionStatus);
 
         binding.configBTButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -71,8 +72,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(lv_it);
             }
         });
-        // Need grant permission once per install
-//        cpf_checkBTPermissions(); // MOVED TO BluetoothConfigActivity
     }
 
     // Overriding onCreateoptionMenu() to make Option menu

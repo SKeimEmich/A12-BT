@@ -58,8 +58,6 @@ public class BluetoothConfigActivity extends AppCompatActivity {
         View view = binding.getRoot();
         setContentView(view);
 
-
-
         // calling the action bar
         ActionBar actionBar = getSupportActionBar();
 
@@ -189,6 +187,9 @@ public class BluetoothConfigActivity extends AppCompatActivity {
         catch (Exception e) {
             Toast.makeText(BluetoothConfigActivity.this, "Error interacting with remote device [" + e.getMessage() + "]", Toast.LENGTH_LONG).show();
         }
+        playTone2();
+        playTone4();
+        playTone6();
     }
 
 
@@ -206,6 +207,9 @@ public class BluetoothConfigActivity extends AppCompatActivity {
     //disconnect from EV3
     @SuppressLint("MissingPermission")
     private void cpf_disconnFromEV3(BluetoothDevice bd) {
+        playTone6();
+        playTone4();
+        playTone2();
         try {
             cv_btSocket.close();
             cv_is.close();
@@ -215,8 +219,6 @@ public class BluetoothConfigActivity extends AppCompatActivity {
             Toast.makeText(BluetoothConfigActivity.this, "Error in disconnect -> " + e.getMessage(), Toast.LENGTH_LONG).show();
         }
     }
-
-
 
 
     //set the motor direction forward/backward
