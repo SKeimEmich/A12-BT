@@ -107,14 +107,13 @@
     <LinearLayout
         android:id="@+id/linearLayout3"
         android:layout_width="409dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="427dp"
-        android:layout_marginBottom="143dp"
+        android:layout_height="100dp"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@+id/colorSensorBtn"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.679">
 
         <Button
             android:id="@+id/key1"

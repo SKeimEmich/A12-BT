@@ -25,10 +25,10 @@ in your app if it targets Android 12 or higher:
             android:name=".BluetoothConfigActivity"
             android:exported="false"
             android:label="@string/title_activity_bluetooth_config"
-            android:theme="@style/Theme.A12BT.NoActionBar" />
+            android:theme="@style/Theme.A12BT" />
         <activity android:name=".MainActivity2"
             android:exported="false"
-            android:theme="@style/Theme.A12BT.NoActionBar">
+            android:theme="@style/Theme.A12BT">
             <intent-filter> <action android:name="android.bluetooth.device.action.ACL_CONNECTED" />
                 <action android:name="android.bluetooth.device.action.ACL_DISCONNECT_REQUESTED" />
                 <action android:name="android.bluetooth.device.action.ACL_DISCONNECTED" />

@@ -5,6 +5,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -29,6 +30,12 @@ public class MainActivity2 extends AppCompatActivity implements SeekBar.OnSeekBa
         //SeekBar secondSeek = findViewById(R.id.secondSeekBar);
         firstSeek.setOnSeekBarChangeListener(this);
         //secondSeek.setOnSeekBarChangeListener(this);
+
+        // calling the action bar
+        ActionBar actionBar = getSupportActionBar();
+
+        // showing the back button in action bar
+        actionBar.setDisplayHomeAsUpEnabled(true);
 
         //set bluetooth connection status
         TextView connectionStatus = (TextView) findViewById(R.id.nxtConnectionText);

@@ -18,6 +18,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -62,7 +63,7 @@ public class BluetoothConfigActivity extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
 
         // showing the back button in action bar
-        //actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setDisplayHomeAsUpEnabled(true);
 
         // Need grant permission once per install
         cpf_checkBTPermissions();
@@ -105,17 +106,17 @@ public class BluetoothConfigActivity extends AppCompatActivity {
     private void cpf_checkBTPermissions() {
         if (ContextCompat.checkSelfPermission(BluetoothConfigActivity.this,
                 Manifest.permission.BLUETOOTH_SCAN) == PackageManager.PERMISSION_GRANTED) {
-            Toast.makeText(BluetoothConfigActivity.this, "BLUETOOTH_SCAN already granted.", Toast.LENGTH_LONG).show();
+            Toast.makeText(BluetoothConfigActivity.this, "BLUETOOTH_SCAN already granted.", Toast.LENGTH_SHORT).show();
         }
         else {
-            Toast.makeText(BluetoothConfigActivity.this, "BLUETOOTH_SCAN not granted.", Toast.LENGTH_LONG).show();
+            Toast.makeText(BluetoothConfigActivity.this, "BLUETOOTH_SCAN not granted.", Toast.LENGTH_SHORT).show();
         }
         if (ContextCompat.checkSelfPermission(BluetoothConfigActivity.this,
                 Manifest.permission.BLUETOOTH_CONNECT) == PackageManager.PERMISSION_DENIED) {
-            Toast.makeText(BluetoothConfigActivity.this, "BLUETOOTH_CONNECT NOT granted.", Toast.LENGTH_LONG).show();
+            Toast.makeText(BluetoothConfigActivity.this, "BLUETOOTH_CONNECT NOT granted.", Toast.LENGTH_SHORT).show();
         }
         else {
-            Toast.makeText(BluetoothConfigActivity.this, "BLUETOOTH_CONNECT already granted.", Toast.LENGTH_LONG).show();
+            Toast.makeText(BluetoothConfigActivity.this, "BLUETOOTH_CONNECT already granted.", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -159,14 +160,14 @@ public class BluetoothConfigActivity extends AppCompatActivity {
             while (lv_it.hasNext())  {
                 lv_bd = lv_it.next();
                 if (lv_bd.getName().equalsIgnoreCase(name)) {
-                    Toast.makeText(BluetoothConfigActivity.this, name + " is in paired list.", Toast.LENGTH_LONG).show();
+                    Toast.makeText(BluetoothConfigActivity.this, name + " is in paired list.", Toast.LENGTH_SHORT).show();
                     return lv_bd;
                 }
             }
-            Toast.makeText(BluetoothConfigActivity.this, name + " is NOT in paired list.", Toast.LENGTH_LONG).show();
+            Toast.makeText(BluetoothConfigActivity.this, name + " is NOT in paired list.", Toast.LENGTH_SHORT).show();
         }
         catch (Exception e) {
-            Toast.makeText(BluetoothConfigActivity.this, "Failed in findRobot() " + e.getMessage(), Toast.LENGTH_LONG).show();
+            Toast.makeText(BluetoothConfigActivity.this, "Failed in findRobot() " + e.getMessage(), Toast.LENGTH_SHORT).show();
         }
         return null;
     }
@@ -174,19 +175,23 @@ public class BluetoothConfigActivity extends AppCompatActivity {
     // Modify from chap14, pp391 connectToRobot()
     @SuppressLint("MissingPermission")
     private void cpf_connectToEV3(BluetoothDevice bd) {
+
         try  {
+
             cv_btSocket = bd.createRfcommSocketToServiceRecord
                     (UUID.fromString("00001101-0000-1000-8000-00805F9B34FB"));
             cv_btSocket.connect();
-            Toast.makeText(BluetoothConfigActivity.this, "Connect to " + bd.getName() + " at " + bd.getAddress(), Toast.LENGTH_LONG).show();
+            Toast.makeText(BluetoothConfigActivity.this, "Connect to " + bd.getName() + " at " + bd.getAddress(), Toast.LENGTH_SHORT).show();
             cv_is = cv_btSocket.getInputStream();
             cv_os = cv_btSocket.getOutputStream();
             connectionStatus = true;
+
             setStatus();
         }
         catch (Exception e) {
-            Toast.makeText(BluetoothConfigActivity.this, "Error interacting with remote device [" + e.getMessage() + "]", Toast.LENGTH_LONG).show();
+            Toast.makeText(BluetoothConfigActivity.this, "Error interacting with remote device [" + e.getMessage() + "]", Toast.LENGTH_SHORT).show();
         }
+        connectionStatus = true;
         playTone2();
         playTone4();
         playTone6();
@@ -214,9 +219,9 @@ public class BluetoothConfigActivity extends AppCompatActivity {
             cv_btSocket.close();
             cv_is.close();
             cv_os.close();
-            Toast.makeText(BluetoothConfigActivity.this, bd.getName() + " is disconnected.", Toast.LENGTH_LONG).show();
+            Toast.makeText(BluetoothConfigActivity.this, bd.getName() + " is disconnected.", Toast.LENGTH_SHORT).show();
         } catch (Exception e) {
-            Toast.makeText(BluetoothConfigActivity.this, "Error in disconnect -> " + e.getMessage(), Toast.LENGTH_LONG).show();
+            Toast.makeText(BluetoothConfigActivity.this, "Error in disconnect -> " + e.getMessage(), Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -695,9 +700,9 @@ public class BluetoothConfigActivity extends AppCompatActivity {
             cv_os.flush();
 
             int response = cv_is.read();
-            Toast.makeText(ctx, "Color Sensor Value is " + response, Toast.LENGTH_LONG).show();
+            Toast.makeText(ctx, "Color Sensor Value is " + response, Toast.LENGTH_SHORT).show();
         }catch(Exception e){
-            Toast.makeText(ctx, "Read Color Sensor Function is broken!!", Toast.LENGTH_LONG).show();
+            Toast.makeText(ctx, "Read Color Sensor Function is broken!!", Toast.LENGTH_SHORT).show();
         }
     }
 }

@@ -14,6 +14,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import com.example.a12_bt.databinding.ActivityMainBinding;
@@ -41,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
     private Set<BluetoothDevice> cv_pairedDevices = null;
     private BluetoothDevice cv_btDevice = null;
     private BluetoothSocket cv_btSocket = null;
+    static boolean connectionStatus = false;
     //initialize speed at 50
     static int speed = 50;
     //initialize direction as forward (1)
@@ -56,7 +58,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(view);
 
         // Button to display robot controls is not enabled if the robot is not connected
-        binding.robotControlButton.setEnabled(BluetoothConfigActivity.connectionStatus);
+        //binding.robotControlButton.setEnabled(false);
+
 
         binding.configBTButton.setOnClickListener(new View.OnClickListener() {
             @Override
